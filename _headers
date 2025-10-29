@@ -1,11 +1,8 @@
 /*
-  # セキュリティヘッダー - ハッカー対策
-
-  # XSS攻撃対策 - Content Security Policy
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://images.unsplash.com data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  # セキュリティヘッダー
 
   # クリックジャッキング対策
-  X-Frame-Options: DENY
+  X-Frame-Options: SAMEORIGIN
 
   # MIME type sniffing 攻撃対策
   X-Content-Type-Options: nosniff
@@ -13,14 +10,8 @@
   # XSS フィルター有効化
   X-XSS-Protection: 1; mode=block
 
-  # リファラー情報の制御（プライバシー保護）
+  # リファラー情報の制御
   Referrer-Policy: strict-origin-when-cross-origin
-
-  # 不要なブラウザ機能を無効化
-  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()
-
-  # HTTPS強制（HSTS）
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
   # キャッシュ制御
   Cache-Control: public, max-age=3600, must-revalidate
