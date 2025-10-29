@@ -41,6 +41,13 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#00BCD4">
 
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()">
+
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -665,7 +672,7 @@
                     <div class="article-content">
                         <div class="article-meta">
                             <span class="article-tag">AI開発</span>
-                            <span class="article-date">📅 2025-01-15</span>
+                            <span class="article-date">📅 2025-10-29</span>
                         </div>
                         <h3 class="article-title">思考の速度で実装 | 自然言語AI開発で創造革命を実現する完全ガイド</h3>
                         <p class="article-excerpt">
@@ -755,7 +762,9 @@
     </footer>
 
     <!-- Particles.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
+            integrity="sha384-5K8DvA/jQItSqMzBuJJX/9Up/DVImOuA7VTJuJux3zXhblA+NzZPI/rHSgIeEadg"
+            crossorigin="anonymous"></script>
     <script>
         // Wait for particles.js to load
         window.addEventListener('load', function() {
