@@ -185,6 +185,8 @@
             gap: 4px;
             cursor: pointer;
             padding: 8px;
+            background: none;
+            border: none;
         }
 
         .mobile-menu-toggle span {
@@ -626,11 +628,11 @@
             <a href="/" class="nav-logo">
                 <img src="/株式会社イケメンロゴ.png" alt="IKEMEN LTD">
             </a>
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="メニューを開く" aria-expanded="false" role="button">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="/">ホーム</a></li>
                 <li><a href="#articles">記事</a></li>
