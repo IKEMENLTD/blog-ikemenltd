@@ -282,12 +282,14 @@
         }
         
         .nav-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
         }
         
         .nav-links {
@@ -986,20 +988,19 @@
     <nav class="nav" role="navigation" aria-label="メインナビゲーション">
         <div class="container">
             <div class="nav-content">
-                <div class="nav-logo" itemscope itemtype="https://schema.org/Organization">
-                    <span itemprop="name">思考の速度で実装</span>
-                </div>
+                <a href="/" class="nav-logo">
+                    <img src="/株式会社イケメンロゴ.png" alt="IKEMEN LTD">
+                </a>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </button>
                 <ul class="nav-links" id="navLinks" role="menubar">
-                    <li role="none"><a href="#intro" role="menuitem">序論</a></li>
-                    <li role="none"><a href="#core" role="menuitem">核心要素</a></li>
-                    <li role="none"><a href="#transformation" role="menuitem">変容</a></li>
-                    <li role="none"><a href="#future" role="menuitem">未来</a></li>
-                    <li role="none"><a href="#top10" role="menuitem">TOP 10</a></li>
+                    <li role="none"><a href="/" role="menuitem">ホーム</a></li>
+                    <li role="none"><a href="/#articles" role="menuitem">記事</a></li>
+                    <li role="none"><a href="/about-us/" role="menuitem">About</a></li>
+                    <li role="none"><a href="/contact/" role="menuitem">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -2047,23 +2048,20 @@
     </section>
     
     <!-- Footer -->
-    <footer role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
+    <footer role="contentinfo" style="background: var(--bg-secondary); border-top: 1px solid rgba(0, 188, 212, 0.1); padding: 3rem 0 2rem;">
         <div class="container">
-            <div class="footer-content">
-                <h2 class="footer-title">思考の速度で実装</h2>
-                <p class="footer-text">言葉を選ぶとき、あなたは既に新しい世界を創り始めている。</p>
-                <div class="footer-divider" aria-hidden="true"></div>
-                <p style="opacity: 0.6; font-size: 0.9rem;">
-                    <span itemprop="copyrightYear">2025</span> 
-                    <span itemprop="copyrightHolder">思考の速度で実装</span>
-                </p>
-                <nav aria-label="フッターナビゲーション" style="margin-top: 1rem;">
-                    <a href="#intro" style="color: #B2EBF2; text-decoration: none; margin: 0 1rem;">序論</a>
-                    <a href="#core" style="color: #B2EBF2; text-decoration: none; margin: 0 1rem;">核心要素</a>
-                    <a href="#top10" style="color: #B2EBF2; text-decoration: none; margin: 0 1rem;">TOP 10</a>
-                    <a href="/sitemap.xml" style="color: #B2EBF2; text-decoration: none; margin: 0 1rem;">サイトマップ</a>
-                    <a href="/feed.xml" style="color: #B2EBF2; text-decoration: none; margin: 0 1rem;">RSS</a>
+            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                <p><strong>IKEMEN LTD</strong></p>
+                <p style="color: var(--text-secondary); margin: 1rem 0;">AIとテクノロジーで未来を創造する</p>
+                <nav aria-label="フッターナビゲーション" style="display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                    <a href="/" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s;">ホーム</a>
+                    <a href="/#articles" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s;">記事一覧</a>
+                    <a href="/about-us/" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s;">About</a>
+                    <a href="/contact/" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s;">Contact</a>
                 </nav>
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(0, 188, 212, 0.1); color: var(--text-secondary); font-size: 0.9rem;">
+                    <p>&copy; 2025 IKEMEN LTD. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
