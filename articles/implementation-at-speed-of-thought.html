@@ -405,15 +405,17 @@
         
         .toc-number {
             display: inline-block;
-            width: 32px;
+            min-width: 32px;
             height: 32px;
+            padding: 0 0.75rem;
             background: var(--gradient);
             color: white;
-            border-radius: 50%;
+            border-radius: 16px;
             text-align: center;
             line-height: 32px;
             margin-right: 0.75rem;
             font-size: 0.9rem;
+            white-space: nowrap;
         }
         
         /* Section */
@@ -919,8 +921,9 @@
             }
             
             .toc-number {
-                width: 28px;
+                min-width: 28px;
                 height: 28px;
+                padding: 0 0.6rem;
                 line-height: 28px;
                 font-size: 0.8rem;
             }
