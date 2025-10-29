@@ -39,12 +39,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="theme-color" content="#00BCD4">
 
     <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
@@ -80,6 +79,7 @@
     </script>
 
     <style>
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -87,41 +87,55 @@
         }
 
         :root {
-            --primary-color: #00BCD4;
-            --secondary-color: #0097A7;
-            --accent-color: #FF6B6B;
-            --dark-bg: #1a1a2e;
-            --darker-bg: #16162a;
-            --card-bg: #252547;
-            --text-primary: #ffffff;
-            --text-secondary: #b8b8d1;
-            --text-muted: #8e8ea9;
-            --border-color: #3a3a5c;
-            --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 15px 50px rgba(0, 188, 212, 0.2);
+            --primary: #00BCD4;
+            --primary-dark: #0097A7;
+            --primary-light: #B2EBF2;
+            --accent: #00E5FF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #FAFAFA;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-light: #BDBDBD;
+            --shadow: rgba(0, 188, 212, 0.1);
+            --gradient: linear-gradient(135deg, #00BCD4 0%, #00E5FF 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Noto Sans JP', 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.8;
             color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            font-display: swap;
         }
 
-        /* Header */
-        header {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 0;
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F0FDFF 100%);
+        }
+
+        /* Navigation */
+        .nav {
             position: sticky;
             top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
             z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 188, 212, 0.1);
         }
 
-        .header-container {
+        .nav-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
@@ -130,175 +144,182 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #00E5FF 100%);
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -0.5px;
         }
 
-        nav ul {
-            list-style: none;
+        .nav-links {
             display: flex;
             gap: 2rem;
+            list-style: none;
         }
 
-        nav a {
+        .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
+            transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
-        nav a:hover {
-            color: var(--primary-color);
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 24px;
             height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            background: var(--primary);
+            transition: all 0.3s;
         }
 
         /* Hero Section */
         .hero {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
             line-height: 1.2;
         }
 
-        .hero p {
-            font-size: 1.25rem;
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
+            margin-bottom: 3rem;
+            font-weight: 300;
         }
 
-        .hero-cta {
-            display: inline-flex;
-            gap: 1rem;
-            margin-top: 1rem;
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
         }
 
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--primary);
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 188, 212, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         /* Articles Section */
-        .articles-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem 5rem;
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-secondary);
         }
 
         .section-header {
-            margin-bottom: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            display: inline-block;
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
         }
 
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 2rem;
-            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 300;
         }
 
-        .section-description {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-left: 2rem;
-        }
-
+        /* Article Grid */
         .articles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
+        /* Article Cards */
         .article-card {
-            background: var(--card-bg);
-            border-radius: 16px;
+            background: white;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 40px var(--shadow);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(0, 188, 212, 0.1);
             display: flex;
             flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .article-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .article-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary-color);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(0, 188, 212, 0.2);
+            border-color: var(--primary);
         }
 
         .article-image {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            height: 240px;
+            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -314,11 +335,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 188, 212, 0.3) 0%, rgba(0, 151, 167, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.2) 0%, rgba(0, 229, 255, 0.2) 100%);
         }
 
         .article-content {
-            padding: 1.5rem;
+            padding: 2rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -327,35 +348,36 @@
         .article-meta {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .article-tag {
             font-size: 0.75rem;
-            padding: 0.35rem 0.75rem;
-            background: rgba(0, 188, 212, 0.15);
-            color: var(--primary-color);
+            padding: 0.4rem 0.9rem;
+            background: rgba(0, 188, 212, 0.1);
+            color: var(--primary);
             border-radius: 20px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.05em;
         }
 
         .article-date {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--text-light);
             display: flex;
             align-items: center;
             gap: 0.4rem;
         }
 
         .article-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
-            line-height: 1.3;
+            line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -364,31 +386,33 @@
 
         .article-excerpt {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
+            margin-bottom: 2rem;
+            line-height: 1.8;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             flex-grow: 1;
+            font-size: 1rem;
         }
 
         .article-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 188, 212, 0.1);
         }
 
         .read-more {
-            color: var(--primary-color);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             transition: gap 0.3s ease;
+            font-size: 0.95rem;
         }
 
         .read-more:hover {
@@ -403,7 +427,7 @@
         .article-stats {
             display: flex;
             gap: 1rem;
-            color: var(--text-muted);
+            color: var(--text-light);
             font-size: 0.85rem;
         }
 
@@ -415,10 +439,9 @@
 
         /* Footer */
         footer {
-            background: var(--darker-bg);
-            border-top: 1px solid var(--border-color);
-            padding: 3rem 2rem 2rem;
-            margin-top: 5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid rgba(0, 188, 212, 0.1);
+            padding: 4rem 2rem 2rem;
         }
 
         .footer-content {
@@ -427,13 +450,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
             font-size: 1.2rem;
+            font-weight: 700;
         }
 
         .footer-section ul {
@@ -441,7 +465,7 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .footer-section a {
@@ -451,161 +475,239 @@
         }
 
         .footer-section a:hover {
-            color: var(--primary-color);
+            color: var(--primary);
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
         .footer-bottom {
             max-width: 1200px;
             margin: 2rem auto 0;
             padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(0, 188, 212, 0.1);
             text-align: center;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
-        /* Responsive */
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .mobile-menu-toggle {
+                display: flex;
             }
 
-            .hero p {
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 250px;
+                height: calc(100vh - 60px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .nav-links a {
                 font-size: 1.1rem;
+                display: block;
+                padding: 0.5rem 0;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
             }
 
             .articles-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
             }
 
-            nav ul {
-                gap: 1rem;
+            section {
+                padding: 4rem 0;
             }
 
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
 
-        /* Loading animation for images */
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
             }
-            100% {
-                background-position: 1000px 0;
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .article-card {
+                border-radius: 16px;
+            }
+
+            .article-content {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
             }
         }
 
-        .loading {
-            animation: shimmer 2s infinite;
-            background: linear-gradient(to right, var(--card-bg) 4%, var(--border-color) 25%, var(--card-bg) 36%);
-            background-size: 1000px 100%;
+        /* Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <div class="logo">IKEMEN LTD</div>
-            <nav>
-                <ul>
-                    <li><a href="#home">ホーム</a></li>
-                    <li><a href="#articles">記事</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="nav-logo">IKEMEN LTD</div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="メニューを開く" aria-expanded="false" role="button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#articles">記事</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1>AI・テクノロジー<br>イノベーションメディア</h1>
-        <p>
-            最先端のAI技術、自然言語プログラミング、そしてテクノロジーの未来について深く掘り下げるメディア。
-            エンジニア、起業家、イノベーターのための実践的な知見とインスピレーションを提供します。
-        </p>
-        <div class="hero-cta">
-            <a href="#articles" class="btn btn-primary">記事を読む</a>
-            <a href="#about" class="btn btn-secondary">もっと知る</a>
+        <div class="hero-content">
+            <h1>AI・テクノロジー<br>イノベーションメディア</h1>
+            <p class="hero-subtitle">
+                最先端のAI技術、自然言語プログラミング、そしてテクノロジーの未来について深く掘り下げるメディア。<br>
+                エンジニア、起業家、イノベーターのための実践的な知見とインスピレーションを提供します。
+            </p>
         </div>
+        <div class="scroll-indicator" aria-hidden="true"></div>
     </section>
 
     <!-- Articles Section -->
-    <section class="articles-section" id="articles">
-        <div class="section-header">
-            <h2 class="section-title">最新記事</h2>
-            <p class="section-description">テクノロジーの最前線から、厳選された記事をお届けします</p>
-        </div>
+    <section id="articles">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">LATEST ARTICLES</div>
+                <h2 class="section-title">最新記事</h2>
+                <p class="section-subtitle">テクノロジーの最前線から、厳選された記事をお届けします</p>
+            </div>
 
-        <div class="articles-grid">
-            <!-- Article 1 -->
-            <article class="article-card">
-                <div class="article-image">🚀</div>
-                <div class="article-content">
-                    <div class="article-meta">
-                        <span class="article-tag">AI開発</span>
-                        <span class="article-date">📅 2025-01-15</span>
-                    </div>
-                    <h3 class="article-title">思考の速度で実装 | 自然言語AI開発で創造革命を実現する完全ガイド</h3>
-                    <p class="article-excerpt">
-                        AIと自然言語で実装する新時代の創造手法。ひらめきの工業化、マルチエージェント、個の超知能化など7つの核心要素から、思考の速度で実装する未来まで。
-                    </p>
-                    <div class="article-footer">
-                        <a href="articles/implementation-at-speed-of-thought.html" class="read-more">続きを読む</a>
-                        <div class="article-stats">
-                            <span class="stat">📖 16分</span>
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <article class="article-card">
+                    <div class="article-image" aria-hidden="true">🚀</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-tag">AI開発</span>
+                            <span class="article-date">📅 2025-01-15</span>
+                        </div>
+                        <h3 class="article-title">思考の速度で実装 | 自然言語AI開発で創造革命を実現する完全ガイド</h3>
+                        <p class="article-excerpt">
+                            AIと自然言語で実装する新時代の創造手法。ひらめきの工業化、マルチエージェント、個の超知能化など7つの核心要素から、思考の速度で実装する未来まで。エンジニア、起業家のための思想的ガイド。
+                        </p>
+                        <div class="article-footer">
+                            <a href="articles/implementation-at-speed-of-thought.html" class="read-more">続きを読む</a>
+                            <div class="article-stats">
+                                <span class="stat">📖 16分</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <!-- Placeholder for future articles -->
-            <article class="article-card" style="opacity: 0.6;">
-                <div class="article-image">🤖</div>
-                <div class="article-content">
-                    <div class="article-meta">
-                        <span class="article-tag">Coming Soon</span>
-                        <span class="article-date">📅 近日公開</span>
-                    </div>
-                    <h3 class="article-title">次世代AIエージェントシステムの設計と実装</h3>
-                    <p class="article-excerpt">
-                        マルチエージェントシステムの実践的な構築方法と、自律的なAIエージェントの設計パターンについて詳しく解説します。
-                    </p>
-                    <div class="article-footer">
-                        <span class="read-more" style="opacity: 0.5; pointer-events: none;">準備中</span>
-                        <div class="article-stats">
-                            <span class="stat">📖 --分</span>
+                <!-- Placeholder Article 2 -->
+                <article class="article-card" style="opacity: 0.6;">
+                    <div class="article-image" aria-hidden="true">🤖</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-tag">Coming Soon</span>
+                            <span class="article-date">📅 近日公開</span>
+                        </div>
+                        <h3 class="article-title">次世代AIエージェントシステムの設計と実装</h3>
+                        <p class="article-excerpt">
+                            マルチエージェントシステムの実践的な構築方法と、自律的なAIエージェントの設計パターンについて詳しく解説します。実際のプロジェクトでの応用例も紹介。
+                        </p>
+                        <div class="article-footer">
+                            <span class="read-more" style="opacity: 0.5; pointer-events: none;">準備中</span>
+                            <div class="article-stats">
+                                <span class="stat">📖 --分</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <article class="article-card" style="opacity: 0.6;">
-                <div class="article-image">💡</div>
-                <div class="article-content">
-                    <div class="article-meta">
-                        <span class="article-tag">Coming Soon</span>
-                        <span class="article-date">📅 近日公開</span>
-                    </div>
-                    <h3 class="article-title">プロンプトエンジニアリングの本質と実践テクニック</h3>
-                    <p class="article-excerpt">
-                        効果的なプロンプト設計の原則から、実践的なテクニック、そして次世代のプロンプト戦略まで、包括的に解説します。
-                    </p>
-                    <div class="article-footer">
-                        <span class="read-more" style="opacity: 0.5; pointer-events: none;">準備中</span>
-                        <div class="article-stats">
-                            <span class="stat">📖 --分</span>
+                <!-- Placeholder Article 3 -->
+                <article class="article-card" style="opacity: 0.6;">
+                    <div class="article-image" aria-hidden="true">💡</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-tag">Coming Soon</span>
+                            <span class="article-date">📅 近日公開</span>
+                        </div>
+                        <h3 class="article-title">プロンプトエンジニアリングの本質と実践テクニック</h3>
+                        <p class="article-excerpt">
+                            効果的なプロンプト設計の原則から、実践的なテクニック、そして次世代のプロンプト戦略まで、包括的に解説します。実例を交えた詳細ガイド。
+                        </p>
+                        <div class="article-footer">
+                            <span class="read-more" style="opacity: 0.5; pointer-events: none;">準備中</span>
+                            <div class="article-stats">
+                                <span class="stat">📖 --分</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -614,8 +716,9 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>IKEMEN LTD</h3>
-                <p style="color: var(--text-secondary);">
-                    AIとテクノロジーで未来を創造する
+                <p>
+                    AIとテクノロジーで未来を創造する。<br>
+                    最新の技術動向と実践的な知見をお届けします。
                 </p>
             </div>
             <div class="footer-section">
@@ -651,42 +754,191 @@
         </div>
     </footer>
 
+    <!-- Particles.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Wait for particles.js to load
+        window.addEventListener('load', function() {
+            // Check if particlesJS is available
+            if (typeof particlesJS === 'undefined') {
+                console.warn('particles.js not loaded, skipping particles initialization');
+                return;
+            }
+
+            // Optimize for mobile
+            var isMobile = window.innerWidth < 768;
+            var particleCount = isMobile ? 40 : 80;
+            var particleSpeed = isMobile ? 1 : 2;
+            var lineDistance = isMobile ? 100 : 150;
+
+            // Particles configuration
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: particleCount,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: '#00BCD4'
+                    },
+                    shape: {
+                        type: 'circle',
+                        stroke: {
+                            width: 0,
+                            color: '#000000'
+                        }
+                    },
+                    opacity: {
+                        value: 0.3,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    size: {
+                        value: 3,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 2,
+                            size_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: lineDistance,
+                        color: '#00BCD4',
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: particleSpeed,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false,
+                        attract: {
+                            enable: false,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
+                    }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: {
+                        onhover: {
+                            enable: !isMobile,
+                            mode: 'grab'
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: 'push'
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 140,
+                            line_linked: {
+                                opacity: 0.5
+                            }
+                        },
+                        push: {
+                            particles_nb: isMobile ? 2 : 4
+                        }
+                    }
+                },
+                retina_detect: true
             });
         });
 
-        // Add intersection observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+        // Smooth scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Close mobile menu after clicking
+                        if (window.innerWidth < 768) {
+                            document.getElementById('navLinks').classList.remove('active');
+                        }
+                    }
+                });
             });
-        }, observerOptions);
 
-        // Observe all article cards
-        document.querySelectorAll('.article-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+            // Intersection Observer for article cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.article-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const isOpen = navLinks.classList.toggle('active');
+
+            // Update ARIA attributes
+            toggle.setAttribute('aria-expanded', isOpen);
+            toggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('navLinks');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            if (nav && toggle && window.innerWidth < 768) {
+                if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                    nav.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.setAttribute('aria-label', 'メニューを開く');
+                }
+            }
+        });
+
+        // Handle window resize for particles
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Reload particles on significant resize
+                if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
+                    pJSDom[0].pJS.fn.vendors.destroypJS();
+                    window.location.reload();
+                }
+            }, 250);
         });
     </script>
 </body>
