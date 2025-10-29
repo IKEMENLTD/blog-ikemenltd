@@ -145,12 +145,14 @@
         }
 
         .nav-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -448,8 +450,8 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
             margin-bottom: 3rem;
         }
 
@@ -608,17 +610,19 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
-            <div class="nav-logo">IKEMEN LTD</div>
+            <a href="/" class="nav-logo">
+                <img src="/株式会社イケメンロゴ.png" alt="IKEMEN LTD">
+            </a>
             <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="メニューを開く" aria-expanded="false" role="button">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">ホーム</a></li>
+                <li><a href="/">ホーム</a></li>
                 <li><a href="#articles">記事</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/about-us/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -724,19 +728,10 @@
             <div class="footer-section">
                 <h3>リンク</h3>
                 <ul>
-                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="/">ホーム</a></li>
                     <li><a href="#articles">記事一覧</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>カテゴリ</h3>
-                <ul>
-                    <li><a href="#articles">AI開発</a></li>
-                    <li><a href="#articles">自然言語プログラミング</a></li>
-                    <li><a href="#articles">イノベーション</a></li>
-                    <li><a href="#articles">テクノロジー</a></li>
+                    <li><a href="/about-us/">About</a></li>
+                    <li><a href="/contact/">Contact</a></li>
                 </ul>
             </div>
         </div>

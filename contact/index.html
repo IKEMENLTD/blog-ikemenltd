@@ -84,13 +84,14 @@
         }
 
         .nav-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: flex;
+            align-items: center;
             text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -287,12 +288,14 @@
 
     <nav class="nav">
         <div class="nav-content">
-            <a href="index.html" class="nav-logo">IKEMEN LTD</a>
+            <a href="/" class="nav-logo">
+                <img src="/株式会社イケメンロゴ.png" alt="IKEMEN LTD">
+            </a>
             <ul class="nav-links">
-                <li><a href="index.html">ホーム</a></li>
-                <li><a href="index.html#articles">記事</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/#articles">記事</a></li>
+                <li><a href="/about-us/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -371,10 +374,10 @@
             <p><strong>IKEMEN LTD</strong></p>
             <p>AIとテクノロジーで未来を創造する</p>
             <nav class="footer-links">
-                <a href="index.html">ホーム</a>
-                <a href="index.html#articles">記事一覧</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
+                <a href="/">ホーム</a>
+                <a href="/#articles">記事一覧</a>
+                <a href="/about-us/">About</a>
+                <a href="/contact/">Contact</a>
             </nav>
             <div class="footer-bottom">
                 <p>&copy; 2025 IKEMEN LTD. All rights reserved.</p>
