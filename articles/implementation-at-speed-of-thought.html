@@ -46,13 +46,6 @@
     <link rel="apple-touch-icon" href="/favicon.png">
     <meta name="theme-color" content="#00BCD4">
 
-    <!-- Security Headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()">
-
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -276,7 +269,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
-            z-index: 1000;
+            z-index: 9999;
             border-bottom: 1px solid rgba(0, 188, 212, 0.1);
         }
         
@@ -284,6 +277,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .nav-logo {
@@ -325,7 +319,7 @@
             background: none;
             border: none;
             position: relative;
-            z-index: 1001;
+            z-index: 10000;
         }
         
         .mobile-menu-toggle span {
@@ -351,7 +345,7 @@
                 padding: 2rem;
                 box-shadow: -2px 0 10px rgba(0,0,0,0.1);
                 transition: right 0.3s;
-                z-index: 999;
+                z-index: 9998;
             }
             
             .nav-links.active {
@@ -2075,9 +2069,7 @@
     </footer>
     
     <!-- Particles.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
-            integrity="sha384-5K8DvA/jQItSqMzBuJJX/9Up/DVImOuA7VTJuJux3zXhblA+NzZPI/rHSgIeEadg"
-            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" crossorigin="anonymous"></script>
     <script>
         // Wait for particles.js to load
         window.addEventListener('load', function() {
